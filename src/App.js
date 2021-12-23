@@ -6,7 +6,11 @@ import { CurrencyContext } from './context/CurrencyContext';
 import { useState } from 'react';
 
 function App() {
-  const [currency, setCurrency] = useState("")
+  const [currency, setCurrency] = useState({
+    currency: "BRL",
+    symbol: "R$",
+    image: "https://static.coinstats.app/flags/BRL_r.png"
+  })
 
   return (
     <div className="App">
