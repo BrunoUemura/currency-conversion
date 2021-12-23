@@ -1,36 +1,33 @@
+/* eslint-disable jsx-a11y/alt-text */
 import "./styles.scss";
-import React from "react";
-import { BsStarFill, BsStarHalf } from "react-icons/bs";
+import React, { useContext } from "react";
+
+import { currencies } from "../../mock/Currency";
+import { CurrencyContext } from "../../context/CurrencyContext";
 
 export const Navbar = () => {
+  const { setCurrency } = useContext(CurrencyContext);
+
   return (
-    <div className="container">
-      <img className="image" src={image} alt={name} />
-      <p className="productName">{name}</p>
+    <div className="navbar">
+      <h1 className="navbarTitle">Currency Converter</h1>
 
-      <div className="prices">
-        <div className="pricesDetails">
-          <p className="productOriginalPrice">R$ 749.99</p>
-          <p className="productCurrentPrice">{price}</p>
-        </div>
-
-        <p className="installments">
-          Até 12x de R$ {(price / 12).toFixed(2)} sem juros
-        </p>
-      </div>
-
-      <div className="reviews">
-        <div className="reviewsStars">
-          <BsStarFill />
-          <BsStarFill />
-          <BsStarFill />
-          <BsStarFill />
-          <BsStarHalf />
-        </div>
-        <p className="reviewsCount">({reviews})</p>
-      </div>
-
-      <p className="productColors">{attributes.colors.length} Colors</p>
+      <select className="currencyOptions" name="selectList">
+        {currencies.map((curr, index) => (
+          <option
+            key={index}
+            value={index}
+            style={{
+              backgroundImage: `url(${curr.image})`,
+            }}
+            onClick={() => {
+              setCurrency(curr);
+            }}
+          >
+            {curr.currency}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

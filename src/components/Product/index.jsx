@@ -1,6 +1,7 @@
 import "./styles.scss";
-import React from "react";
+import React, { useContext } from "react";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { CurrencyContext } from "../../context/CurrencyContext";
 
 const reviewStars = (review) => {
   const stars = [];
@@ -27,11 +28,16 @@ const reviewStars = (review) => {
 export const Product = ({
   name,
   price,
+  discount,
   image,
   attributes,
   review,
   reviewCount,
 }) => {
+  const { currency } = useContext(CurrencyContext);
+
+  console.log(currency);
+
   return (
     <div className="container">
       <img className="image" src={image} alt={name} />
@@ -39,12 +45,16 @@ export const Product = ({
 
       <div className="prices">
         <div className="pricesDetails">
-          <p className="productOriginalPrice">R$ 749.99</p>
-          <p className="productCurrentPrice">{price}</p>
+          <p className="productOriginalPrice">
+            {currency.symbol} {price}
+          </p>
+          <p className="productCurrentPrice">
+            {currency.symbol} {(price - price * discount).toFixed(2)}
+          </p>
         </div>
 
         <p className="installments">
-          Até 12x de R$ {(price / 12).toFixed(2)} sem juros
+          Até 12x de {currency.symbol} {(price / 12).toFixed(2)} sem juros
         </p>
       </div>
 

@@ -11,6 +11,11 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   margin-right: 10px;
+
+  &:hover {
+    transform: scale(1.01);
+    transition: 0.3s;
+  }
 }
 
 .image {
@@ -42,10 +47,12 @@ p {
 
     .productOriginalPrice {
       text-decoration-line: line-through;
+      color: var(--old-price);
     }
 
     .productCurrentPrice {
       font-size: larger;
+      color: var(--new-price);
     }
   }
 
