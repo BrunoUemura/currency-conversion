@@ -46,7 +46,7 @@ export const Product = ({
       <div className="prices">
         <div className="pricesDetails">
           <p className="productOriginalPrice">
-            {currency.symbol} {price}
+            {currency.symbol} {price.toFixed(2)}
           </p>
           <p className="productCurrentPrice">
             {currency.symbol} {(price - price * discount).toFixed(2)}
