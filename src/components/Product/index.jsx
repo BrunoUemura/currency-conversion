@@ -36,8 +36,6 @@ export const Product = ({
 }) => {
   const { currency } = useContext(CurrencyContext);
 
-  console.log(currency);
-
   return (
     <div className="container">
       <img className="image" src={image} alt={name} />

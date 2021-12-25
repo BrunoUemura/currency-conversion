@@ -10,19 +10,21 @@ export const Products = () => {
 
   useEffect(() => {
     (async () => {
-      const products = await getAllProducts(currency.currency);
-      setProducts(products);
+      if (typeof currency == "object") {
+        const products = await getAllProducts(currency.currency);
+        setProducts(products);
+      } else {
+        const products = await getAllProducts(currency);
+        setProducts(products);
+      }
     })();
   }, [currency]);
-
-  console.log(products);
 
   return (
     <div className="content">
       {products &&
         !!products.length &&
-        products?.map((product, index) => {
-          console.log(product);
+        products.map((product, index) => {
           return <Product key={index} {...product} />;
         })}
     </div>
